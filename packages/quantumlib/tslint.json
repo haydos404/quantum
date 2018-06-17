@@ -1,0 +1,20 @@
+{
+	"defaultSeverity": "warn",
+	"extends": ["tslint:recommended"],
+	"jsRules": {},
+	"rules": {
+		"no-unused-variable": true,
+		"indent": [true, "tabs"],
+		"arrow-parens": false,
+		"no-angle-bracket-type-assertion": false,
+		"quotemark": [true, "single"],
+		"whitespace": false,
+		"no-empty-interface": false,
+		"no-var-requires": false,
+		"variable-name": false,
+		"only-arrow-functions": false,
+		"semicolon": true,
+		"trailing-comma": true
+	},
+	"rulesDirectory": []
+}

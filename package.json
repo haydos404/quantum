@@ -1,0 +1,19 @@
+{
+  "name": "quantum",
+  "version": "0.1.0",
+  "description": "Quantum universal workflow engine. Uses generators and attempts to be stateless",
+  "main": "index.js",
+  "author": "Hayden Jackson <hayden.jackson@protonmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+	"start": "node packages/quantum-rest/lib/index.js",
+	"build": "tsc"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  }
+}
