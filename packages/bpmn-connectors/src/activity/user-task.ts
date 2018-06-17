@@ -19,8 +19,8 @@ interface IUserTaskStep extends ITokenStep {
  * Actions
  */
 interface IStateMachine {
-	Handle: (step: IUserTaskStep) => IUserTaskStep;
-	Complete: (step: IUserTaskStep) => IUserTaskStep;
+	Handle: (token: IToken, step: IUserTaskStep) => IUserTaskStep;
+	Complete: (token: IToken, step: IUserTaskStep) => IUserTaskStep;
 }
 
 /**
@@ -29,28 +29,18 @@ interface IStateMachine {
 type State = keyof IStateMachine;
 
 /**
- * User tasks yield a new task and then resume on continue of that
- */
-export const userTask: INativeConnector = {
-	description: 'Executes a user task activity',
-	execute: (_token: IToken, step: IUserTaskStep) => {
-		const state = getState(step);
-
-		if (!state) {
-			return step;
-		}
-
-		return reducerStateMachine[state](step);
-	},
-	id: 'bpmn:UserTask',
-};
-
-/**
  * Execute state machine for this user task
  */
-const reducerStateMachine: IStateMachine = {
-	Complete: (step: IUserTaskStep) => step,
-	Handle: (step: IUserTaskStep) => step,
+const reducer: IStateMachine = {
+	Complete: (token: IToken, step: IUserTaskStep) => {
+		step.state.complete = true;
+		return step;
+	},
+	Handle: (token: IToken, step: IUserTaskStep) => {
+		step.properties.handled = true;
+
+		return step;
+	},
 };
 
 /**
@@ -72,3 +62,19 @@ function getState(step: ITokenStep): State | undefined {
 		return;
 	}
 }
+/**
+ * User tasks yield a new task and then resume on continue of that
+ */
+export const bpmnUserTask: INativeConnector = {
+	description: 'Executes a user task activity',
+	execute: (token: IToken, step: IUserTaskStep) => {
+		const state = getState(step);
+
+		if (!state) {
+			return step;
+		}
+
+		return reducer[state](token, step);
+	},
+	id: 'bpmn:UserTask',
+};

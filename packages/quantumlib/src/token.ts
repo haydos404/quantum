@@ -9,6 +9,17 @@ export interface IState {
 	 * Has completed
 	 */
 	complete: boolean;
+
+	/**
+	 * Evaluated itself and doesn't need to execute
+	 */
+	discarded: boolean;
+
+	/**
+	 * May or may not have been ready to correctly execute but was stopped by
+	 * another element.
+	 */
+	cancelled: boolean;
 }
 
 /**

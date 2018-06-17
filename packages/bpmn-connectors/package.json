@@ -1,6 +1,6 @@
 {
 	"name": "bpmn-connectors",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "Connectors for the bpmn language spec",
 	"main": "lib/index",
 	"types": "lib/index.d.ts",

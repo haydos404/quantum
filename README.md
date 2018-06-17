@@ -8,7 +8,7 @@ The quantum workflow engine is a work in progress activity based workflow engine
 
 We aim to do this by a few means:
 
-- **Scalable** - Everything is stateless. When a workflow is executed elements are executed (asynchronously) sequentially giving us resource access safety and server throughput. We do this using Async Generators that ensure we don't attempt to write to memory before it's released by the previous element.
+- **Scalable** - Everything is stateless. When a workflow is executed elements are executed (asynchronously) sequentially giving us resource access safety and server throughput.
 - **Modular by design** - Workflow elements of type are implemented by ['connectors'](##connectors). [Connectors](##connectors) are specific stateless units of work that may be hosted internally as a derived INativeConnector or externally as a type of IHTTPConnector. This allows people to define loose implementations means that we can scale to accommodate a number of language definitions.
 - **Process Language Agnostic** - Quantum engine allows for [adaptor](##Adaptors) middleware to compile process definitions into the natively supported execution type, IDefinition. As an example quantum will provide a base BPMN 2.0 adaption middleware that will provide an example of this.
 

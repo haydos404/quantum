@@ -63,6 +63,8 @@ export function addNewTokenStepById(
 			state: {
 				complete: false,
 				started: false,
+				cancelled: false,
+				discarded: false,
 			},
 		});
 	}

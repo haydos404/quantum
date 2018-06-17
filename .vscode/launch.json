@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/packages/quantumlib/lib/index.js"
+      "program": "${workspaceFolder}/packages/quantum-rest/lib/index.js"
     }
   ]
 }

@@ -50,11 +50,19 @@ export async function fromToken(
 	connectors: IConnector[],
 	token: IToken,
 ): Promise<IToken> {
-	await execute(connectors, token);
-	return token;
+	return execute(connectors, token);
 }
 
-export async function* execute(connectors: IConnector[], token: IToken) {
+/**
+ * Execute a workflow
+ *
+ * @param connectors - Connectors to execute with
+ * @param token - Execution token
+ */
+export async function execute(
+	connectors: IConnector[],
+	token: IToken,
+): Promise<IToken> {
 	let id: string | undefined;
 
 	// Loop while there are currents
@@ -79,10 +87,12 @@ export async function* execute(connectors: IConnector[], token: IToken) {
 			}
 		}
 
-		// Prepare next steps
-		for (const n of definition.next) {
-			// Add start elements to stack
-			addNextTokenStep(token, getDefinitionByTokenStep(token, n).id);
+		if (step.state.complete) {
+			// Prepare next steps
+			for (const n of definition.next) {
+				// Add start elements to stack
+				addNextTokenStep(token, getDefinitionByTokenStep(token, n).id);
+			}
 		}
 	}
 
