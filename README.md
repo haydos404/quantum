@@ -12,6 +12,17 @@ We aim to do this by a few means:
 - **Modular by design** - Workflow elements of type are implemented by ['connectors'](##connectors). [Connectors](##connectors) are specific stateless units of work that may be hosted internally as a derived INativeConnector or externally as a type of IHTTPConnector. This allows people to define loose implementations means that we can scale to accommodate a number of language definitions.
 - **Process Language Agnostic** - Quantum engine allows for [adaptor](##Adaptors) middleware to compile process definitions into the natively supported execution type, IDefinition. As an example quantum will provide a base BPMN 2.0 adaption middleware that will provide an example of this.
 
+## Getting Started
+
+We use `yarn` workspaces and `lerna` to help us with our build process.
+
+To get started:
+
+1.  Install yarn - `npm install -g yarn`
+2.  Install all sub modules - `lerna bootstrap`
+3.  Compile typescript - `lerna run build`
+4.  Include core `quantum` package OR execute `quantum-rest` - `npm run start`
+
 ## Connectors
 
 > Work in progress
